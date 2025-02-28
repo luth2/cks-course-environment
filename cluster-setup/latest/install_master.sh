@@ -4,32 +4,12 @@
 
 set -e
 
-source /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "20.04" ]; then
-    echo "################################# "
-    echo "############ WARNING ############ "
-    echo "################################# "
-    echo
-    echo "This script only works on Ubuntu 20.04!"
-    echo "You're using: ${DISTRIB_DESCRIPTION}"
-    echo "Better ABORT with Ctrl+C. Or press any key to continue the install"
-    read
-fi
+echo "Ubuntu 20.04 can be used only for this Script"
 
 KUBE_VERSION=1.31.1
 
 # get platform
-PLATFORM=`uname -p`
-
-if [ "${PLATFORM}" == "aarch64" ]; then
-  PLATFORM="arm64"
-elif [ "${PLATFORM}" == "x86_64" ]; then
-  PLATFORM="amd64"
-else
-  echo "${PLATFORM} has to be either amd64 or arm64/aarch64. Check containerd supported binaries page"
-  echo "https://github.com/containerd/containerd/blob/main/docs/getting-started.md#option-1-from-the-official-binaries"
-  exit 1
-fi
+PLATFORM="amd64" #arm64 or amd64
 
 ### setup terminal
 apt-get --allow-unauthenticated update
